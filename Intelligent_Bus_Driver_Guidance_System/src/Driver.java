@@ -15,6 +15,9 @@ public class Driver {
         if (!isValidAddress(address)) {
             throw new IllegalArgumentException("Invalid address: " + address);
         }
+        if (!isValidBirthdate(birthdate)) {
+            throw new IllegalArgumentException("Invalid birthdate: " + birthdate);
+        }
         
         this.driverID = driverID;
         this.name = name;
@@ -92,5 +95,34 @@ public class Driver {
             return false;
         }
         return true;
+    }
+    private boolean isValidBirthdate(String birthdate) {
+        //length should be 10 - DD-MM-YYYY
+        if (birthdate == null || birthdate.length() != 10) {
+            return false
+        }
+        //dashes should be at index 2 and 5
+        if (birthdate.charAt(2) != '-' ||birthdate.charAt(5) != '-') {
+            return false;
+        }
+        for (int i = 0; i < birthdate.length(); i++) {
+            if (i == 2 || i == 5) {
+                continue;
+            }
+            else if (!Character.isDigit(birthdate.charAt(i))) {
+                return false;
+            }
+        }
+
+        int day = Inteegr.parseInt(birthdate.substring(0, 2));
+        int month = Integer.parseInt(birthdate.substring(3,5));
+        int year = Integer.parseInt(birthdate.substring(6, 10));
+
+        if (day < 1 || day > 31) {  return false; }
+        if (month < 1 || month > 12) {  return false; }
+        if (year < 1990 || year > 2025) {   return false;}
+
+        return true;
+
     }
 }
