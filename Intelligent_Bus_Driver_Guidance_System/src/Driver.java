@@ -12,6 +12,10 @@ public class Driver {
         if(!isValidDriverId(driverID)) {
             throw new IllegalArgumentException("Invalid driver Id: " + driverId);
         }
+        if (!isValidAddress(address)) {
+            throw new IllegalArgumentException("Invalid address: " + address);
+        }
+        
         this.driverID = driverID;
         this.name = name;
         this.experienceYears = experienceYears;
@@ -57,6 +61,36 @@ public class Driver {
         }
         
         //returning true since no rules broken
+        return true;
+    }
+
+    private boolean isValidAddress(String address) {
+        String[] parts = address.split("\\|");
+
+        if (parts.length != 5) {
+            return false;
+        }
+
+        String streetNum = parts[0];
+        String streetName = parts[1];
+        String city = parts[2];
+        String state = parts[3];
+        String country = parts[4];
+
+        if (streetNum.isEmpty()) {
+            return false;
+        }
+
+        //ensuring streetNum is numeric
+        for (int i = 0; i < streetNum.size(0; i++)) { 
+            if (!Character.isDigit(streetNum.charAt(i))) {
+                return false;
+            }
+        }
+        //ensuring streetName, city, state and country are not empty
+        if (streetName.isEmpty() || city.isEmpty() || state.isEmpty() || country.isEmpty()) {
+            return false;
+        }
         return true;
     }
 }
