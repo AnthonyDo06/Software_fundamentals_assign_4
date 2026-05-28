@@ -9,6 +9,9 @@ public class Driver {
 
     // Constructor for driver
     public Driver(String driverID, String name, int experienceYears, String licenseType, String address, String birthdate) {
+        if(!isValidDriverId(driverID)) {
+            throw new IllegalArgumentException("Invalid driver Id: " + driverId);
+        }
         this.driverID = driverID;
         this.name = name;
         this.experienceYears = experienceYears;
