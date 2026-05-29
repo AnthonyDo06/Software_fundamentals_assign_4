@@ -17,7 +17,7 @@ public class BusRepository {
 
     public boolean update(String id, Bus updatedBus) {
         for (int i = 0; i < buses.size(); i++) {
-            if (buses.get(i).getId().equals(id)) {
+            if (buses.get(i).busID.equals(id)) {
                 buses.set(i, updatedBus);
                 return true;
             }
@@ -26,7 +26,7 @@ public class BusRepository {
     }
     public Bus retrieve(String id) {
         for (Bus bus : buses) {
-            if (bus.getId() == id) {
+            if (bus.busID == id) {
                 return bus;
             }
         }

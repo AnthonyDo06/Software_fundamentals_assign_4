@@ -15,10 +15,6 @@ public class Bus {
         this.fuelType = fuelType;
     }
 
-    public String getId() {
-        return busID;
-    }
-
     private boolean isValidBusId(String busId) {
 
         if(busId == null || busId.length() != 8) {

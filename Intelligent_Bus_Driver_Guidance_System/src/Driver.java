@@ -26,9 +26,7 @@ public class Driver {
         this.address = address;
         this.birthdate = birthdate;
     }
-    public String getId() {
-        return driverID;
-    }
+
 
     private boolean isValidDriverId(String id) {
 
@@ -114,7 +112,7 @@ public class Driver {
             }
         }
 
-        int day = Inteegr.parseInt(birthdate.substring(0, 2));
+        int day = Integer.parseInt(birthdate.substring(0, 2));
         int month = Integer.parseInt(birthdate.substring(3,5));
         int year = Integer.parseInt(birthdate.substring(6, 10));
 
