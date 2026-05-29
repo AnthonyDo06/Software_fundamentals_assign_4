@@ -18,7 +18,14 @@ public class BusRepository {
     public boolean update(String id, Bus updatedBus) {
         for (int i = 0; i < buses.size(); i++) {
             if (buses.get(i).busID.equals(id)) {
-                buses.set(i, updatedBus);
+                if (buses.get(i).capacity < updatedBus.capacity) {
+                    throw new IllegalArgumentException("Capacity cannot be increased");
+                }
+                else {
+                    buses.get(i).capacity = updatedBus.capacity;
+                }
+                buses.get(i).fuelLevel = updatedBus.fuelLevel;
+                buses.get(i).fuelType = updatedBus.fuelType;
                 return true;
             }
         }
